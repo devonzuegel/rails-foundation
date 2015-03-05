@@ -20,4 +20,6 @@ featured = page.css('table:contains("Featured Funding Rounds") table table tbody
 
 for c in featured.css('table tbody')
 	puts c.search('h2').text
+	puts c.search('h2')['href']
+	# puts c.search('h2').text
 end
