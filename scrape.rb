@@ -19,7 +19,8 @@ page = Nokogiri::HTML(open(URL))
 featured = page.css('table:contains("Featured Funding Rounds") table table tbody')[0]
 
 for c in featured.css('table tbody')
-	puts c.search('h2').text
-	puts c.search('h2')['href']
+	h2 = c.search('h2')[0]
+	puts h2.text
+	puts h2#.css('a[href]')['href']
 	# puts c.search('h2').text
 end
