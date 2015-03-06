@@ -1,6 +1,5 @@
 class CrunchbaseScraper < ActiveRecord::Base
 
-
 	def initialize
 		@companies, @investors = [], []
 
@@ -22,7 +21,7 @@ class CrunchbaseScraper < ActiveRecord::Base
 	end
 	
 
-	private 
+	private  #------------------------
 		def cb_permalink(a)
 			a['href'].scan(/[\w-]+$/)[0] if a != nil
 		end

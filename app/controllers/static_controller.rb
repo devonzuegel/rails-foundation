@@ -1,9 +1,8 @@
 class StaticController < ApplicationController
 
 	def index
-		crunchbase_scrape = CrunchbaseScraper.new()
-		@companies = crunchbase_scrape.companies
-		@investors = crunchbase_scrape.investors	
+		@companies = Company.today
+		@investors = Investor.today
 	end
 
 end
