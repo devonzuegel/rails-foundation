@@ -4,6 +4,6 @@ class Investment < ActiveRecord::Base
   belongs_to :company
   belongs_to :investor
 
-	validates_uniqueness_of :company_id, :scope => [:investor_id]
+	validates_uniqueness_of :company, :scope => [:investor]
 
 end
