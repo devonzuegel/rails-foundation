@@ -1,4 +1,10 @@
-h3
-  | Welcome
-p= @companies
-p= @investors
+h1 Companies
+
+- @companies.each do |c|
+	p= c
+
+
+h1 Investors
+
+- @investors.each do |i|
+	p= i

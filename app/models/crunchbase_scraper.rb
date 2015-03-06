@@ -2,32 +2,23 @@ class CrunchbaseScraper < ActiveRecord::Base
 
 
 	def initialize
+		@companies, @investors = [], []
+
 		url = 'http://static.crunchbase.com/daily/content_web.html'
 		page = Nokogiri::HTML(open(url))
-
 		rounds_table = page.css('table:contains("Featured Funding Rounds") table table tbody')[0].css('table tbody')
-		companies, investors = {} , {}
+
 		for company_table in rounds_table
-			investors_hash = parse_investors(company_table)
-			company = parse_company(company_table, investors_hash)
-
-			investors = investors.merge(investors_hash)
-			companies = companies.merge(company) if company != nil
+			@investors += parse_investors(company_table)
+			@companies += [parse_company(company_table)].select { |c| c != '' }
 		end
-		companies = companies.select { |c| c != nil }
-
-		@companies = companies
-		@investors = investors
+		ap @companies
 	end
 
 
-	def companies
-		@companies
-	end
-
-
-	def investors
-		@investors
+	def save_to_db
+		Company.create(@companies)
+		Investor.create(@investors)
 	end
 	
 
@@ -38,30 +29,30 @@ class CrunchbaseScraper < ActiveRecord::Base
 
 
 		def parse_investors(company_table)
-			investors = {}
+			investors = []
 
 			invest_table = company_table.css('table tbody td:contains("Investors")')
 			for i in invest_table.css('a')
 				# Ignore any rows that are "+ x more investors".
 				if not i.text =~ /\+ \d more investors/
-					investors[cb_permalink(i)] = { name: i.text }
+					investors.push({ 
+						name: i.text,
+						permalink: cb_permalink(i)
+					})
 				end
 			end
 			return investors
 		end
 
 
-		def parse_company(company_table, investors)
+		def parse_company(company_table)
 			h2 = company_table.search('h2')
-			return nil if h2.text == ''  # Skip if company_table contains no name
+			return '' if h2.text == ''  # Skip if company_table contains no name
 			
-			company = { 
+			return {
+				permalink: cb_permalink(h2.css('a[href]')[0]),
 				name: h2.text, 
-				investors: investors.keys
 			}
-
-			permalink = cb_permalink(h2.css('a[href]')[0])
-			return { "#{permalink}" => company }
 		end
 
 
