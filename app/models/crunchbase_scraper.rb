@@ -1,23 +1,42 @@
 class CrunchbaseScraper < ActiveRecord::Base
 
 	def initialize
-		@companies, @investors = [], []
+		@companies, @investors, @investments = [], [], []
 
 		url = 'http://static.crunchbase.com/daily/content_web.html'
 		page = Nokogiri::HTML(open(url))
 		rounds_table = page.css('table:contains("Featured Funding Rounds") table table tbody')[0].css('table tbody')
 
 		for company_table in rounds_table
-			@investors += parse_investors(company_table)
-			@companies += [parse_company(company_table)].select { |c| c != '' }
+			company = parse_company(company_table)
+			
+			if company != ""
+				@investors += parse_investors(company_table)
+				@companies += [company].select { |c| c != '' }
+			
+				@investors.each do |i|
+					@investments.push({
+						investor: i[:permalink],
+						company:  company[:permalink]
+					})
+				end
+			end
 		end
-		ap @companies
 	end
 
 
 	def save_to_db
 		Company.create(@companies)
 		Investor.create(@investors)
+
+		investments = []
+		@investments.each do |i|
+			investments.push({
+				investor_id: Investor.where(permalink: i[:investor])[0][:id],
+				company_id:  Company.where(permalink:  i[:company])[0][:id],
+			})
+		end
+		Investment.create(investments)
 	end
 	
 
