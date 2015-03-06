@@ -8,9 +8,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'awesome_print'
-gem 'rubygems'
 gem 'nokogiri' 
-gem 'open-uri'
 
 group :development, :test do
   gem 'byebug'
