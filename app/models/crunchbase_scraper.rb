@@ -1,6 +1,7 @@
-class VisitorsController < ApplicationController
+class CrunchbaseScraper < ActiveRecord::Base
 
-	def index
+
+	def initialize
 		url = 'http://static.crunchbase.com/daily/content_web.html'
 		page = Nokogiri::HTML(open(url))
 
@@ -19,8 +20,16 @@ class VisitorsController < ApplicationController
 		@investors = investors
 	end
 
-end
 
+	def companies
+		@companies
+	end
+
+
+	def investors
+		@investors
+	end
+	
 
 	private 
 		def cb_permalink(a)
@@ -55,3 +64,5 @@ end
 			return { "#{permalink}" => company }
 		end
 
+
+end
