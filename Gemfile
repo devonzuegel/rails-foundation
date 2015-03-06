@@ -8,7 +8,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'awesome_print'
-gem 'nokogiri' 
+gem 'nokogiri'
+gem 'gon' 
 
 group :development, :test do
   gem 'byebug'
