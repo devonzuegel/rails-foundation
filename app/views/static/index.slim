@@ -1,23 +1,5 @@
-
-/ h1 Companies
-
-/ - @companies.each do |c|
-/ 	p= c.name
-
-
-/ h1 Investors
-
-/ - @investors.each do |i|
-/ 	p= i.name
-
-
 div.page-content
   #graph
-
-
-coffee:
-	for c in gon.companies
-		console.log c
 
 
 javascript:
@@ -42,28 +24,8 @@ javascript:
 
   //Read the data from the mis element 
   var graph = {
-    "nodes": [
-      {
-        "name": "XXXX",
-        "group": 4
-      }, {
-        "name": "Mme.Hucheloup",
-        "group": 2
-      }, {
-        "name": "aaaaa",
-        "group": 8
-      }, {
-        "name": "bbb",
-        "group": 1
-      }
-    ],
-    "links": [
-      {
-        "source": 1,
-        "target": 0,
-        "value": 1
-      }
-    ]
+    "nodes": gon.nodes,
+    "links": gon.links
   };
 
   //Creates the graph data structure out of the json data
