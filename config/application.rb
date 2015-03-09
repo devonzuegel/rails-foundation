@@ -35,6 +35,11 @@ module RailsFoundation
     # For Foundation 5
     config.assets.precompile += %w( vendor/modernizr )
 
+    ##
+    # By default Heroku does not serve your assets with Rails 4. The following
+    # line enables this functionality.
+    config.serve_static_assets = true
+
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
