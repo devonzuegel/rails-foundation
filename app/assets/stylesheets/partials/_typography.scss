@@ -11,25 +11,17 @@ body {
   font-weight: normal;
 }
 
-.name {
+h1, h2, h3, .name {
   font-family: $open-sans;
   font-weight: normal;
-	text-transform: uppercase;
 	padding-left: 10px;
+}
+
+.name {
+	text-transform: uppercase;
 }
 
 .button {
   font-family: $roboto-slab;
   font-weight: bold;
-}
-
-
-.link {
-  stroke: #ccc;
-}
-
-.node text {
-  pointer-events: none;
-  cursor: crosshair;
-  font: 13px $roboto-slab;
 }
