@@ -5,6 +5,8 @@ class StaticController < ApplicationController
 		gon.links = graph_links(gon.nodes)
 	end
 
+	def about
+	end
 
 	private  # -----------------------------------------------
 	def graph_nodes

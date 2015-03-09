@@ -1,18 +1,6 @@
 div.page-content
   #graph
 
-
-css:
-  .link {
-    stroke: #ccc;
-  }
-
-  .node text {
-    pointer-events: none;
-    cursor: crosshair;
-    font: 12px sans-serif;
-  }
-
 javascript:
 
   //Constants for the SVG
@@ -24,8 +12,8 @@ javascript:
 
   //Set up the force layout
   var force = d3.layout.force()
-      .charge(-820)
-      .linkDistance(110)
+      .charge(-1020)
+      .linkDistance(130)
       .size([width, height]);
 
   //Append a SVG to the body of the html page. Assign this SVG as an object to svg
