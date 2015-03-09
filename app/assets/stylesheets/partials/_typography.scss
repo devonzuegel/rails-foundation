@@ -1,18 +1,18 @@
-// Google Fonts
-@import url(http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700italic,400,700);
+// // Google Fonts
+// @import url(http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700italic,400,700);
 
-// Font Variables
-$roboto-slab: 'Roboto Slab', serif;   
-$open-sans: 'Open Sans', sans-serif;
+// // Font Variables
+// $roboto-slab: 'Roboto Slab', serif;   
+// $open-sans: 'Open Sans', sans-serif;
 
 // Styles
 body {
-  font-family: $roboto-slab;
+  // font-family: $roboto-slab;
   font-weight: normal;
 }
 
 h1, h2, h3, .name {
-  font-family: $open-sans;
+  // font-family: $open-sans;
   font-weight: normal;
 	padding-left: 10px;
 }
@@ -22,6 +22,6 @@ h1, h2, h3, .name {
 }
 
 .button {
-  font-family: $roboto-slab;
+  // font-family: $roboto-slab;
   font-weight: bold;
 }
